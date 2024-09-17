@@ -1,0 +1,91 @@
+<!-- Main HTML file for the 2D version of the Sam's 3D Library Website-->
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <title>Sam's 3D Library</title>
+    <meta name="author" content="Samuel Ruairi Bullard">
+    <meta name="description" content="Explore and get inspired by custom-made 3D models.">
+    <meta name="keywords" content="Blender, 3D, Assets, Game-Development, Low-Poly, 3D-Models, Unity">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="css/styles-main.css"/>
+    <link rel="stylesheet" href="css/styles-pagination.css"/>
+    <link rel="stylesheet" href="css/styles-loading-screen.css"/>
+    <link rel="stylesheet" href="css/styles-sticky-footer-scroll-card.css"/>
+
+  </head>
+
+
+  <!-- Page Content -->
+  <body>
+    <div class="wave"></div>
+    <div class="loader">
+      <p>Loading</p><span></span><span></span><span></span>
+    </div>
+
+    <div class="page-content">
+      <div class="header">
+        <div class="icon-grid">
+            <ion-icon id="LinkedIn" title="LinkedIn" onclick=" window.open('https://www.linkedin.com/in/samuel-bullard-112539248', '_blank'); return false;" size="large" src="icons/linkedin.svg"></ion-icon>
+            <ion-icon id="Github" title="Github" onclick=" window.open('https://github.com/abullard1', '_blank'); return false;" size="large" src="icons/github.svg"></ion-icon> 
+            <ion-icon id="Instagram" title="Instagram" onclick=" window.open('https://www.instagram.com/samueltheonlyone/', '_blank'); return false;" size="large" src="icons/instagram.svg"></ion-icon>
+            <ion-icon id="TurboSquid" title="TurboSquid" onclick=" window.open('https://www.turbosquid.com/de/Search/Artists/samudschigo', '_blank'); return false;" size="large" src="icons/turbosquid.svg"></ion-icon>
+            <ion-icon id="CGTrader" title="CGTrader" onclick=" window.open('https://www.cgtrader.com/samudschigo', '_blank'); return false;" size="large" src="icons/cgtrader.svg"></ion-icon>
+        </div>
+        <h1>Sam's 3D library</h1>
+        <hr>
+      </div>
+
+      <div class="subheader">
+        <p>Welcome to my personal 3D-asset library.
+        Feel free to browse through all of the
+        assets and let yourself be inspired. </p>
+      </div>
+
+      <div class="main-container">
+        <div class="assets-container-wrapper">
+          <div class="assets-container">
+            <!-- Assets are being generated here -->
+          </div>
+        </div>
+        <div id="app">
+          <div class="button active"></div>
+          <!-- <div class="button"></div> --> <!-- Uncomment this line to add a second pagination button when adding more assets -->
+        </div>
+      </div>
+
+
+      <lottie-player src="lottie/scroll-down.json"  background="transparent"  speed="1"  style="width: 100px; height: 100px;"  loop  autoplay></lottie-player>
+      <div class="footer" id="sticky-footer">
+        <p>© 2023 Samuel Bullard</p>
+        <div class="bottom-bar">
+            <a href="impressum.html" target="_blank">
+              <p>Impressum</p>
+            </a>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Script Imports -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="scripts/script-sticky-footer-scroll-card.js"></script>
+    <script src="scripts/script-loading-screen.js"></script>
+    <script src="scripts/script-pagination.js"></script>
+    <script src="scripts/script-unload-models.js"></script>
+    <script src="scripts/script-overlay-modelviewer-orbit-interpolation.js"></script>
+    <script src="scripts/script-asset-dropdown-menu.js"></script>
+    <script src="scripts/script-main.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,62 @@
+/* Pagination at bottom of page */
+/* Varibales for easy customization */
+:root {
+  --pagination-button-initial-size: 20px;
+  --pagination-button-active-size: 60px;
+  --pagination-button-margin: 5px;
+  --pagination-button-color: #9c9c9c;
+  --pagination-button-border-width: 2px;
+  --pagination-button-transition-speed: 0.3s;
+  --pagination-button-initial-scale: 0.9;
+  --pagination-button-active-scale: 1.0;
+}
+
+#app {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    left: 0;
+    width: fit-content;
+    height: var(--pagination-button-initial-size);
+    z-index: 1;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 20px;
+  }
+  
+  .button {
+    width: var(--pagination-button-initial-size);
+    height: var(--pagination-button-initial-size);
+    float: left;
+    margin: var(--pagination-button-margin);
+    background-color: transparent;
+    border-color: var(--pagination-button-color);
+    border-width: var(--pagination-button-border-width);
+    border-style: solid;
+    border-radius: var(--pagination-button-initial-size);
+    cursor: pointer;
+    transition: width var(--pagination-button-transition-speed) ease, transform var(--pagination-button-transition-speed) ease;
+    transform: scale(var(--pagination-button-initial-scale));
+  }
+  
+  .button:last-child {
+    margin-right: 0;
+  }
+  
+  .button.active {
+    width: var(--pagination-button-active-size);
+    cursor: auto;
+    background-color: #9c9c9c;
+  }
+  
+  .button:not(.active):hover {
+    transform: scale(var(--pagination-button-active-scale));
+  }
+  
+  .assets-container-transition {
+    transition: transform 0.3s ease;
+  }
+
+  .main-container {
+    position: relative;
+  }

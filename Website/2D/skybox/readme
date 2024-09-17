@@ -1,0 +1,4 @@
+Can be used as a skybox or for custom lighting if so desired.
+Modelviewer Attributes:
+1. skybox-image="skybox/lilienstein_1k.hdr"
+2. environment-image="skybox/lilienstein_1k.hdr"

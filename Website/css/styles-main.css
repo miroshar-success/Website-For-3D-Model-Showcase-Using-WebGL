@@ -1,0 +1,136 @@
+/* Varibales for easy customization */
+:root {
+  --transition-speed: 0.3s;
+  --greyscale-amount: 75%;
+  --blur-amout: 20px;
+  --brightness-amount: 0.5;
+}
+
+/* Loads the "Press Start 2P" font */
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("/fonts/PressStart2P-Regular.woff2");
+  font-display: block;
+}
+
+html {
+  color: black;
+  background-color: none;
+  font-family: "Press Start 2P";
+  text-align: center;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden
+}
+
+h1 {
+  position: fixed;
+  left: 50%;
+  margin-top: 2em;
+  font-size: 2.5em;
+  display: inline-block;
+  transform: translateX(-50%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.flex-box {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Media query for mobile devices. Columns are stacked on top of each other */
+@media screen and (max-width: 780px) {
+  /* Columns are stacked on top of each other and font size is reduced */
+  .flex-box {
+    flex-direction: column;
+  }
+
+  .left-top, .right-bottom {
+    width: 100%;
+    height: 50%;
+    flex-direction: column;
+  }
+  
+  .left-top h1, .right-bottom h1 {
+    font-size: 3em;
+  }
+
+  /* Header is centered and font size is reduced */
+  body > h1 {
+    font-size: 2em;
+    margin: auto;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.left-top, .right-bottom {
+  position: relative;
+  flex: 1;
+  transition: flex var(--transition-speed) ease;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.left-top h1, .right-bottom h1 {
+  font-size: 8em;
+  position: absolute;
+  margin: 0;
+  z-index: 1;
+}
+
+.left-top:hover #video-left-top, .right-bottom:hover #video-right-bottom {
+  filter: grayscale(0%) blur(0px) brightness(1);
+}
+
+#video-left-top, #video-right-bottom {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: grayscale(var(--greyscale-amount)) blur(var(--blur-amout)) brightness(var(--brightness-amount));
+  z-index: 0;
+  transition: filter var(--transition-speed) ease;
+}
+
+.left-top:hover h1, .right-bottom:hover h1 {
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.left-top:not(hover) h1, .right-bottom:not(hover) h1 {
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.left-top:hover h1, .right-bottom:hover h1 {
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.left-top:not(hover) h1, .right-bottom:not(hover) h1 {
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+#header {
+  transition: color, opacity var(--transition-speed) ease;
+}

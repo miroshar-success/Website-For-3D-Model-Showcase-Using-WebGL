@@ -1,0 +1,62 @@
+:root {
+    --footer-background-color: rgba(51, 51, 51, 1.0);
+    --footer-hover-underline-color: rgba(255, 255, 255, 1.0);
+}
+
+/* Popup card Footer with name and Disclaimer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    text-align: center;
+    padding: 10px;
+    background-color: var(--footer-background-color);
+    color: #fff;
+    font-size: 12px;
+    transform: translateY(100%);
+    transition: transform 0.3s;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    z-index: 999999;
+}
+
+.footer.visible {
+    transform: translateY(0%);
+}
+
+.bottom-bar {
+    font-size: 10px;
+}
+
+.bottom-bar p {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    line-height: 1.5em;
+    color: white;
+    width: fit-content;
+}
+
+.bottom-bar p::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--footer-hover-underline-color);
+    transition: width 0.2s ease-in-out;
+}
+
+.bottom-bar p:hover::before {
+    width: 100%;
+}
+
+.assets-container-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}

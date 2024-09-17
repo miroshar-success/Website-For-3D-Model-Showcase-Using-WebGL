@@ -1,0 +1,15 @@
+{
+    "name": "Sam's 3D Library",
+    "short_name": "Sam's 3D Library",
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "background_color": "#FFFFFF",
+    "theme_color": "#fff",
+    "description": "Sam's 3D Library",
+    "icons": [{
+      "src": "TemplateData/icons/unity-logo-light.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }]
+  }

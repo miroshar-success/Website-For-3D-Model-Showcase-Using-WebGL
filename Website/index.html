@@ -1,0 +1,44 @@
+<!-- Main HTML file for chooosing between the 2D and interactive 3D Version of the Sam's 3D Library Website-->
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <title>Sam's 3D Library</title>
+    <meta name="author" content="Samuel Bullard">
+    <meta name="description" content="This is a website made to showcase custom 3D Models.">
+    <meta name="keywords" content="CSS, HTML, Grid, Grid Layout, Blender, 3D, Assets">
+    <meta content="width=device-width, height=device-height, initial-scale=1" name="viewport">
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="css/styles-main.css"/>
+  </head>
+
+
+  <!-- Page Content -->
+  <body>
+    <h1 id="header">Sam's 3D library</h1>
+    <div class="flex-box">
+
+      <!-- Left/Top Side -->
+      <div id="left-top" class="left-top" onclick="location.href = 'http://sams3dlibrary.com/3D/';">
+        <video id="video-left-top" muted loop>
+          <source src="videos/3D Version Loop.mp4" type="video/mp4">
+        </video>
+        <h1>3D</h1>
+      </div>
+
+      <!-- Right/Bottom Side -->
+      <div id="right-bottom" class="right-bottom" onclick="location.href = 'http://sams3dlibrary.com/2D/';">
+        <video id="video-right-bottom" muted loop>
+          <source src="videos/2D Version Loop.mp4" type="video/mp4">
+        </video>
+        <h1>2D</h1>
+      </div>
+
+    </div>
+
+    <!-- Custom Scripts -->
+    <script src="scripts/script-intro-animation.js"></script>
+  </body>
+</html>

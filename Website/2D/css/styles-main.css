@@ -1,0 +1,565 @@
+/* Varibales for easy customization */
+:root {
+  --overlay-background-blur: 5px;
+  --overlay-background-color: rgba(0, 0, 0, 0.5);
+  --overlay-transition-speed: 0.25s;
+  --assets-shadow-not-hovered: 0px 1px 15px 0px rgba(0, 0, 0, 0.2);  
+  --assets-shadow-hovered: 0px 0px 50px 1px rgba(200, 170, 0, 0.2);
+  --scrollbar-width: 20px;
+  --assets-grid-gap: 4em;
+  --asset-card-border-radius: 20px;
+  --asset-card-background-color: white;
+  --dropdown-speed: 0.2s;
+  --lottie-transition-speed: 0.3s;
+  --overlay-info-fade-bottom-mask-size:60px;
+  --overlay-info-fade-top-mask-size:60px;
+}
+
+/* Loads the "Press Start 2P" font */
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("../../fonts/PressStart2P-Regular.woff2");
+  font-display: block;
+}
+
+/* Main page */
+html {
+  color: black;
+  background-color: white;
+  font-family: "Press Start 2P";
+  text-align: center;
+  text-rendering: optimizeSpeed;
+  min-width: 400px;
+  -webkit-font-smoothing: antialiased;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+}
+
+.page-content {
+  display: none;
+}
+
+body {
+  position: relative;
+}
+
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: var(--scrollbar-width);
+}
+
+.fade-out-scrollbar ::-webkit-scrollbar-thumb {
+  transition: background 0.5s;
+  background: transparent;
+}
+
+
+body, .header {
+  max-width: 100%;
+}
+
+.header {
+  max-width: 800px;
+  align-content: center;
+  margin: auto;
+}
+
+
+/* Socials buttons ionicons */
+.icon-grid {
+  display: grid;
+  padding-top: 1em;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  justify-items: center;
+}
+
+.icon-grid ion-icon {
+  background: white;
+  border-radius: 50%;
+  padding: 0.25em;
+  border: 0.25em solid rgba(255, 255, 0, 0.5);
+  color: black;
+  transform: scale(1);
+  box-shadow: 0px 20px 20px -17px rgba(0, 0, 0, 0.1);
+  transition: background 75ms, transform 100ms ease-out;
+  cursor: pointer;
+}
+
+.icon-grid ion-icon:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 0, 0.5);
+  box-shadow: 0px 20px 20px -17px rgba(0, 0, 0, 0.075);
+  transition: background 100ms, transform 100ms ease-out;
+}
+
+
+/* Sam's 3D Library Page Header */
+.header h1 {
+  padding: 1em 0;
+  font-size: 2.5em;
+  margin-bottom: 0;
+  text-shadow: 5px 5px rgba(255, 255, 0, 0.5);
+}
+
+
+hr {
+  width: inherit;
+  border: 0;
+  margin-left: 40px;
+  margin-right: 40px;
+  border-top: 0.25em solid black;
+  border-radius: 0.5em;
+}
+
+
+/* Subheader page description text */
+.subheader p {
+  margin: auto;
+  max-width: 30em;
+  padding: 3em 0 5em;
+  color: #9c9c9c;
+  line-height: 1.5em;
+}
+
+
+/* Assets container containing all of the individual model cards */
+.assets-container {
+  max-width: 1440px;
+  position: relative;
+  display: grid;
+  padding: 2em 1.5em;
+  padding-bottom: 5em;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: var(--assets-grid-gap);
+  scroll-snap-type: y mandatory;
+  transition: margin-bottom 0.3s ease;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4em;
+  height: calc(33.3333% * 3 + 3em * 2);
+  align-content: start;
+}
+
+/* Media queries to modify the grid-template-columns and height of the assets container depending on the screen size */
+@media (max-width: 1440px) {
+  .assets-container {
+    grid-template-columns: repeat(2, 1fr);
+    height: calc(50% * 3 + 3em * 2); 
+  }
+}
+
+@media (max-width: 780px) {
+  .assets-container {
+    grid-template-columns: 1fr;
+    height: calc(100% * 3 + 3em * 2);
+  }
+
+  .header h1 {
+    font-size: 1.5em;
+    padding: 0.5em 0;
+  }
+
+  .icon-grid {
+    grid-gap: 0.25em;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+  }
+
+  hr {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .subheader p {
+    padding: 1em 0 2em;
+  }
+
+  .asset model-viewer {
+    height: 20em;
+  }
+
+  .model-title {
+    font-size: 14px;
+    margin-top: 0.5em;
+    padding-bottom: 0.1em;
+  }
+
+  .download-container {
+    padding-top: 10px;
+  }
+
+  .download-text-icon {
+    padding: 0 10px;
+  }
+
+  .download-icon {
+    font-size: 20px;
+  }
+}
+
+
+/* Individual model cards */
+.asset {
+  position: relative;
+  height: auto;
+  border-radius: var(--asset-card-border-radius);
+  padding-bottom: 1em;
+  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  max-height: 590px;
+  scroll-snap-align: start;
+  background-color: var(--asset-card-background-color);
+  scroll-snap-align: center;
+}
+
+.asset.dropdown-open, .asset:hover {
+  box-shadow: var(--assets-shadow-hovered)
+}
+
+.asset:not(:hover) {
+  box-shadow: var(--assets-shadow-not-hovered)
+}
+
+.model-title {
+  text-align: center;
+  margin-top: 1em;
+  padding-bottom: 0.2em;
+  color: black;
+  font-size: 18px;
+  }
+  
+/* Modifying the google model viewer */
+.asset model-viewer {
+  width: auto;
+  margin: auto;
+  height: 30em;
+  background: none;
+}
+
+model-viewer::part(default-progress-bar) {
+  height: 1em;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.075);
+  width: 45%;
+  left: calc(50% - 22.5%);
+  margin-top: 0.5em;
+}
+
+model-viewer::part(default-progress-mask) {
+  display: none;
+}
+
+#information {
+  margin-left: 1em;
+  cursor: pointer;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  padding: 0.25em;
+  transition: transform 75ms ease-out;
+}
+
+.header-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+  width: 100%;
+}
+  
+/* Download dropdown menu */
+.download-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 1em;
+  width: fit-content;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 40px;
+  background-color: white;
+  padding-top: 15px;
+  overflow: hidden;
+  transition: box-shadow var(--dropdown-speed) ease-in-out;
+}
+  
+.download-text-icon {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.download-text {
+  margin-right: 8px;
+  text-align: center;
+  position: relative;
+}
+
+.download-text::before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: black;
+  transition: width var(--dropdown-speed) ease-in-out;
+}
+  
+.download-container:hover .download-text::before {
+  width: 100%;
+}
+
+.download-icon {
+  font-size: 28px;
+}
+  
+.dropdown-menu {
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity var(--dropdown-speed) ease-in-out, max-height var(--dropdown-speed) ease-in-out, transform var(--dropdown-speed) ease-in-out;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 12px;
+  max-height: 0;
+  top: 0;
+  transform: translateY(100%);
+}
+
+.dropdown-menu.open {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 200px;
+}
+
+/* Customizing individual dropdown items */
+.dropdown-item {
+  text-decoration: none;
+  padding: 5px 0;
+  color: black;
+  display: flex;
+  transition: transform 0.3s ease-out;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  transform: translateY(-50%);
+}
+  
+.dropdown-item:nth-child(3) {
+   transition-delay: 0s; 
+}
+.dropdown-item:nth-child(2) {
+   transition-delay: 0.05s;
+}
+
+.dropdown-menu.open .dropdown-item {
+  transform: translateY(0);
+}
+
+.dropdown-item:last-child {
+  border-radius: 0 0 20px 20px;
+  padding-bottom: 15px;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.title-info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Info button */
+.info-button-container {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 10;
+}
+
+.info-button-container:hover ~ .asset {
+  box-shadow: 0px 0px 40px 1px rgba(200, 170, 0, 0.2);
+  transition: all 0.1s ease-out;
+}
+
+.info-button-container #information:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 100ms ease-out;
+}
+
+
+/* Overlay when clicking on the info button */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--overlay-background-color);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity var(--overlay-transition-speed) ease-in-out;
+  backdrop-filter: blur(var(--overlay-background-blur));
+}
+
+.overlay-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  background-color: white;
+  border-radius: 20px;
+  max-height: 90%;
+  max-width: 90%;
+  width: 100%;
+  height: 100%;
+}
+  
+.overlay-content .left-column {
+  grid-row: 1 / 3;
+  grid-column: 1;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.overlay-content .right-column-wrapper {
+  grid-row: 1;
+  grid-column: 2;
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 1) var(--overlay-info-fade-top-mask-size, 0), rgba(0, 0, 0, 1) calc(100% - var(--overlay-info-fade-bottom-mask-size, 0)), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 1) var(--overlay-info-fade-top-mask-size, 0), rgba(0, 0, 0, 1) calc(100% - var(--overlay-info-fade-bottom-mask-size, 0)), transparent 100%);
+}
+  
+.overlay-content .right-column-wrapper .right-column {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+  padding-left: 35px;
+  padding-right: 35px;
+}
+  
+.overlay-content .right-column-wrapper::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+}
+
+.overlay-content .right-column-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.overlay-content .right-column-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: var(--scrollbar-width);
+}
+
+.overlay-content .right-column-wrapper.fade-out-scrollbar::-webkit-scrollbar-thumb {
+  transition: background 0.5s;
+  background: transparent;
+}
+  
+/* Overlay Back button */
+.overlay-content .left-column .back-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  padding: 0.25em;
+  transition: transform 75ms ease-out;
+}
+
+.overlay-content .left-column .back-button:hover {
+  transform: scale(1.1);
+  transition: transform 100ms ease-out;
+}
+
+.overlay-content .right-column .model-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.5;
+  position: relative;
+  padding-top: 50px;
+}
+
+/* Buffer element that prevents scrolling of the webpage while the overlay is open */
+.no-scroll {
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Download container within the overlay */
+.asset-download-container {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  align-self: center;
+  margin: auto;
+}
+
+.overlay-download-container {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  align-self: center;
+  margin: auto;
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+
+/* Overlay media query which places the overlay content on top of each other on smaller screens*/
+@media (max-width: 1000px) {
+  .overlay-content {
+    grid-template-rows: 50% 50%;
+    grid-template-columns: 100%;
+  }
+  .overlay-content .left-column {
+    grid-row: 1;
+    grid-column: 1;
+  }
+  .overlay-content .right-column-wrapper {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .overlay-content .left-column .back-button {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+  }
+}
+
+
+/* Lottie player to play the mouse-scroll animation */
+lottie-player {
+    margin: 0 auto;
+    margin-bottom: 25px;
+    transition: var(--lottie-transition-speed);
+}
